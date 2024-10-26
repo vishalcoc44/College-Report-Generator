@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-text">REPORT GENERATOR</h1>
+    </header>
+    <div class="container">
+        <section class="form-section">
+            <h2>Enter Event Details</h2>
+            <form id="eventForm" method="post" action="/submit_event_details" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="eventAddress">Enter Event Address:</label>
+                    <input type="text" id="eventAddress" name="eventAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventTimings">Enter Event Timings:</label>
+                    <input type="text" id="eventTimings" name="eventTimings" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventManager">Event Manager:</label>
+                    <input type="text" id="eventManager" name="eventManager" required>
+                </div>
+              
+                <!-- Add input fields for expenses -->
+                <div class="form-group">
+                    <label for="expenses">Expenses:</label>
+                    <textarea id="expenses" name="expenses" rows="4" cols="50"></textarea>
+                </div>
+
+                <!-- Add input fields for key achievements -->
+                <div class="form-group">
+                    <label for="achievements">Key Achievements:</label>
+                    <textarea id="achievements" name="achievements" rows="4" cols="50"></textarea>
+                </div>
+
+                <!-- Add input fields for testimonials -->
+                <div class="form-group">
+                    <label for="testimonials">Testimonials:</label>
+                    <textarea id="testimonials" name="testimonials" rows="4" cols="50"></textarea>
+                </div>
+
+                <!-- Add input fields for feedback -->
+                <div class="form-group">
+                    <label for="feedback">Feedback:</label>
+                    <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea>
+                </div>
+
+                <!-- Add input fields for photos -->
+                <div class="form-group">
+                    <label for="photos">Upload Photos:</label>
+                    <input type="file" id="photos" name="photos" multiple accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="googleFormFile">Upload Google Forms Data:</label>
+                    <input type="file" id="googleFormFile" name="googleFormFile" required>
+                </div>
+                
+                <button type="submit" id="submitButton">Submit Event Details</button>
+            </form>
+        </section>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventAddressInput = document.getElementById('eventAddress');
+            const eventTimingsInput = document.getElementById('eventTimings');
+            const eventManagerInput = document.getElementById('eventManager');
+            const googleFormFileInput = document.getElementById('googleFormFile');
+            const submitButton = document.getElementById('submitButton');
+
+            function checkInputs() {
+                const eventAddressValue = eventAddressInput.value.trim();
+                const eventTimingsValue = eventTimingsInput.value.trim();
+                const eventManagerValue = eventManagerInput.value.trim();
+                const googleFormFileValue = googleFormFileInput.value.trim();
+
+                if (eventAddressValue !== '' && eventTimingsValue !== '' && eventManagerValue !== '' && googleFormFileValue !== '') {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            }
+
+            eventAddressInput.addEventListener('input', checkInputs);
+            eventTimingsInput.addEventListener('input', checkInputs);
+            eventManagerInput.addEventListener('input', checkInputs);
+            googleFormFileInput.addEventListener('input', checkInputs);
+        });
+    </script>
+</body>
+</html>

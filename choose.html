@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='choose.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-text">College Event Report Generator</h1>
+    </header>
+    <div class="container">
+          <!-- Flash messages section -->
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              <div class="flash-messages">
+                  {% for category, message in messages %}
+                      <div class="flash-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+              </div>
+          {% endif %}
+      {% endwith %}
+        <section class="form-section">
+            <h2>Enter Event Details</h2>
+            <form id="eventForm" method="post" action="{{ url_for('submit_event') }}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="eventName">Event Name:</label>
+                    <input type="text" id="eventName" name="eventName" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Event Date:</label>
+                    <input type="date" id="eventDate" name="eventDate" max="9999-12-31" required >
+                </div>
+                <div class="form-group">
+                    <label for="facultyNames">Faculty Names:</label>
+                    <input type="text" id="facultyNames" name="facultyNames" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentCoordinators">Student Coordinators:</label>
+                    <input type="text" id="studentCoordinators" name="studentCoordinators" required>
+                </div>
+                <div class="form-group">
+                    <label for="speakerName">Speaker Name:</label>
+                    <input type="text" id="speakerName" name="speakerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="aboutSpeaker">About the Speaker:</label>
+                    <textarea id="aboutSpeaker" name="aboutSpeaker" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="posterImage">Poster Image:</label>
+                    <input type="file" id="posterImage" name="posterImage" accept="image/*">
+                </div>
+                <button type="submit" id="submitButton">Enter Report Details</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea');
+            const submitButton = document.getElementById('submitButton');
+
+            function checkInputs() {
+                let allFilled = true;
+                inputs.forEach(input => {
+                    if (input.value.trim() === '' && input.hasAttribute('required')) {
+                        allFilled = false;
+                    }
+                });
+                submitButton.disabled = !allFilled;
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('input', checkInputs);
+            });
+
+            checkInputs(); // Initial check to set the button state
+        });
+    </script>
+</body>
+</html>
