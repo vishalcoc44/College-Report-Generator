@@ -1,83 +1,84 @@
 
 
-College Event Report Generator
+# College Event Report Generator
 
-Overview
+## Overview
 The College Event Report Generator is a Flask-based web application designed to streamline the process of creating comprehensive event reports for college events. It allows users to input event details, upload participant data, and automatically generates professional PDF reports with data visualizations.
 
-Features
-- User Authentication: Secure login and registration system with role-based access (staff/student)
-- Event Management: Create and manage college events with detailed information
-- Data Visualization: Automatic generation of charts and graphs based on participant data
-- PDF Report Generation: Creates professional PDF reports with event details, statistics, and images
-- File Upload: Support for uploading event posters, photos, and participant data (CSV format)
-- Responsive UI: Modern, user-friendly interface with interactive elements
+## Features
+- **User Authentication**: Secure login and registration system with role-based access (staff/student)
+- **Event Management**: Create and manage college events with detailed information
+- **Data Visualization**: Automatic generation of charts and graphs based on participant data
+- **PDF Report Generation**: Creates professional PDF reports with event details, statistics, and images
+- **File Upload**: Support for uploading event posters, photos, and participant data (CSV format)
+- **Responsive UI**: Modern, user-friendly interface with interactive elements
 
-Project Structure
-
+## Project Structure
+```
 project/
-├── app.py                 
-├── config.py               
-├── migrations/           
-│   └── env.py              
-├── static/                 
-│   ├── choose.css         
-│   ├── events.css          
-│   └── index.css          
-├── templates/              
-│   ├── choose.html
-│   ├── event_detail.html   
-│   ├── events.html        
-│   └── index.html        
-└── README.md              
+├── app.py                  # Main application file with Flask routes and logic
+├── config.py               # Configuration settings for the application
+├── migrations/             # Database migration files
+│   └── env.py              # Alembic environment configuration
+├── static/                 # Static assets
+│   ├── choose.css          # Styles for the event creation page
+│   ├── events.css          # Styles for the event details page
+│   └── index.css           # Styles for the login/registration page
+├── templates/              # HTML templates
+│   ├── choose.html         # Event creation form
+│   ├── event_detail.html   # Event details form
+│   ├── events.html         # Event management page
+│   └── index.html          # Login and registration page
+└── README.md               # Project documentation
+```
 
-Technologies Used
-- Backend: Flask, SQLAlchemy, Flask-Migrate
-- Database: SQLite
-- Data Processing: Pandas, Matplotlib, Seaborn
-- PDF Generation: ReportLab
-- Frontend: HTML, CSS, JavaScript
-- Authentication: Flask session management
+## Technologies Used
+- **Backend**: Flask, SQLAlchemy, Flask-Migrate
+- **Database**: SQLite
+- **Data Processing**: Pandas, Matplotlib, Seaborn
+- **PDF Generation**: ReportLab
+- **Frontend**: HTML, CSS, JavaScript
+- **Authentication**: Flask session management
 
-Installation
+## Installation
 
-Prerequisites
+### Prerequisites
 - Python 3.7+
 - pip (Python package manager)
 
-Setup
+### Setup
 1. Clone the repository:
-   
+   ```
    git clone https://github.com/yourusername/college-event-report-generator.git
    cd college-event-report-generator
-
+   ```
 
 2. Create and activate a virtual environment:
-
+   ```
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. Install dependencies:
-   
+   ```
    pip install -r requirements.txt
-   
+   ```
 
 4. Initialize the database:
-   
+   ```
    flask db init
    flask db migrate
    flask db upgrade
-   
+   ```
 
 5. Run the application:
-   
+   ```
    python app.py
-
+   ```
 
 6. Access the application at `http://localhost:5000`
 
-Usage
+## Usage
 
 ### User Registration and Login
 1. Navigate to the home page
@@ -113,6 +114,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contributors
 - Vishal S(https://github.com/vishalcoc44)
-- Pihu MIttal
-```
-
+- Pihu Mittal
